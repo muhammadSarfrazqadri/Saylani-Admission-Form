@@ -43,4 +43,4 @@ submitBtn.addEventListener("click", (e) => {
     admissionForm();
     document.getElementById("registrationForm").reset();
     alert("Form submitted successfully!");
-});
+})
