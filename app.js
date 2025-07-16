@@ -1,6 +1,6 @@
 
   import { initializeApp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
-  import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
+  import { getFirestore, collection, addDoc,getDocs } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
 
   const firebaseConfig = {
     apiKey: "AIzaSyBi4rhvW7t7kQ0eq2WgVxz727qHnOfsJ00",
@@ -44,3 +44,16 @@ submitBtn.addEventListener("click", (e) => {
     document.getElementById("registrationForm").reset();
     alert("Form submitted successfully!");
 })
+async function fetchData (){
+  const names =  await getDocs(collection(db, 'admissions'))
+   names.forEach((name)=> {
+      const {fullName, fatherName, email, cnic, phone, dob, gender, education, course, address} = name.data()
+      const card = `<div class="name-card">
+  <h2 class="name-en"><i class="fa-thin fa-address-card"></i>${name_en}</h2>
+  <p class="meaning-en">📖 The praised one</p>
+  <hr />
+  <h2 class="name-ur" dir="rtl"><i class="fa-thin fa-address-card"></i>${name_ur}</h2>
+  <p class="meaning-ur" dir="rtl">📚 جس کی تعریف کی جائے</p>
+</div>`
+  })
+}
