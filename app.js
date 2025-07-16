@@ -48,12 +48,19 @@ async function fetchData (){
   const names =  await getDocs(collection(db, 'admissions'))
    names.forEach((name)=> {
       const {fullName, fatherName, email, cnic, phone, dob, gender, education, course, address} = name.data()
-      const card = `<div class="name-card">
-  <h2 class="name-en"><i class="fa-thin fa-address-card"></i>${name_en}</h2>
-  <p class="meaning-en">📖 The praised one</p>
-  <hr />
-  <h2 class="name-ur" dir="rtl"><i class="fa-thin fa-address-card"></i>${name_ur}</h2>
-  <p class="meaning-ur" dir="rtl">📚 جس کی تعریف کی جائے</p>
-</div>`
+    const card = document.getElementById("infoCard");
+    card.innerHTML = `
+      <h2>Student Information</h2>
+      <div class="info"><span>Full Name:</span> ${fullName}</div>
+      <div class="info"><span>Father's Name:</span> ${fatherName}</div>
+      <div class="info"><span>Email:</span> ${email}</div>
+      <div class="info"><span>CNIC:</span> ${cnic}</div>
+      <div class="info"><span>Phone:</span> ${phone}</div>
+      <div class="info"><span>Date of Birth:</span> ${dob}</div>
+      <div class="info"><span>Gender:</span> ${gender}</div>
+      <div class="info"><span>Education:</span> ${education}</div>
+      <div class="info"><span>Course:</span> ${course}</div>
+      <div class="info"><span>Address:</span> ${address}</div>
+    `;
   })
 }
